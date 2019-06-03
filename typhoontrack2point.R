@@ -11,6 +11,10 @@
 #CP, 01, 2015072612,   , BEST,   0, 333N, 1300E,  20, 1007, DB,   0,    ,    0,    0,    0,    0, 1007,  130,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M,
 
 ## for typhoon model we need data at each grid location(manucipality centers) and this coede is to calculate wind speed at manucipality centers 
+# this tool is based on the the work of "Willoughby, HE, RWR Darling, and ME Rahn. 2006. 
+#“Parametric Representation of the Primary Hurricane Vortex. Part II:
+#A New Family of Sectionally Continuous Profiles.” Monthly Weather Review 134 (4): 1102–20.
+
 
 library(ggplot2)
 library(dplyr)
@@ -184,7 +188,7 @@ calc_gradient_speed<- function(vmax_sfc_sym, over_land){
   return(vmax_gl)
 }
 
-
+## to define land vs water locations in PAR area 
 landmask <- readr::read_csv("C:/SOFTWARES/stormwindmodel/data-raw/landseamask_ph1.csv",
                             col_names = c("longitude", "latitude", "land")) %>%
   dplyr::mutate(land = factor(land, levels = c(1, 0), labels = c("land", "water")))
@@ -210,7 +214,7 @@ check_over_land<- function(tclat, tclon){
 }
 
 
-#Rmax: Radius from the storm center to the point at which the maximum wind occurs (km)
+#Rmax: Radius from the storm center to the point at which the maximum wind occurs (km) this is based
 
 will7a<- function(vmax_gl, tclat){
   Rmax <- 46.4 * exp(-0.0155 * vmax_gl + 0.0169 * tclat)
