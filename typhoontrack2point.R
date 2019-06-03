@@ -1,3 +1,17 @@
+## this model will calculate maximum wind speed and duration of maximum wind speeds for each grid location based on typhoon track data 
+# typhoon Track data(For example PAGASA forecast comes with the follwoing information into gridpoint 
+#BASIN,CY,YYYYMMDDHH,,,,LAT,LON,VMAX,MSLP,TY,RAD,RAD1,RAD2,RAD3,RAD4,RADP,RRP	MRD	GUSTS	EYE	SPEED	STORMNAME	DEPTH
+#CP, 01, 2015072506,   , BEST,   0, 273N, 1295E,  60,  978, TS,  34, NEQ,  105,   90,   90,   95, 1009,  190,  15,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
+#CP, 01, 2015072506,   , BEST,   0, 273N, 1295E,  60,  978, TS,  50, NEQ,   45,   40,   40,   55, 1009,  190,  15,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
+#CP, 01, 2015072512,   , BEST,   0, 285N, 1292E,  55,  982, TS,  34, NEQ,   95,   70,   70,   85, 1009,  180,  15,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
+#CP, 01, 2015072512,   , BEST,   0, 285N, 1292E,  55,  982, TS,  50, NEQ,   30,   25,   25,   30, 1009,  180,  15,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
+#CP, 01, 2015072518,   , BEST,   0, 298N, 1291E,  50,  985, TS,  34, NEQ,   90,   80,   80,   70, 1006,  140,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
+#CP, 01, 2015072600,   , BEST,   0, 310N, 1292E,  45,  989, TS,  34, NEQ,   80,   70,   90,   80, 1007,  140,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
+#CP, 01, 2015072606,   , BEST,   0, 322N, 1294E,  40,  993, TS,  34, NEQ,   80,   70,   90,   80, 1007,  140,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
+#CP, 01, 2015072612,   , BEST,   0, 333N, 1300E,  20, 1007, DB,   0,    ,    0,    0,    0,    0, 1007,  130,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M,
+
+## for typhoon model we need data at each grid location(manucipality centers) and this coede is to calculate wind speed at manucipality centers 
+
 library(ggplot2)
 library(dplyr)
 library(tidyr)
@@ -556,20 +570,28 @@ calc_and_summarize_grid_wind <- function(grid_point,
   
 }
 
+#### example to calculate typhoon data for each Barangai. Example bopha
+# first filter data for Bopha
 TRACK_DATA1<-TRACK_DATA[tolower(TRACK_DATA$STORMNAME) == 'bopha', ]
+# then calculate 
 
+wind_grids <- get_grid_winds(hurr_track=TRACK_DATA1, grid_df=grid_points_,tint = 0.5,gust_duration_cut = 20,sust_duration_cut = 20)
 
-fulltrack<-create_full_track(hurr_track=TRACK_DATA1, tint = 0.5)
-
-wind_id<-add_wind_radii(full_track = fulltrack)
-
-with_wind_radii <- add_wind_radii(full_track = fulltrack)
-
-wind_grids <- get_grid_winds(hurr_track=TRACK_DATA1,
-                           grid_df=grid_points_,
-                           tint = 0.5,                 gust_duration_cut = 20,
-                           sust_duration_cut = 20)
-
-
-
+# the result will be maximum sustained wind, gust and duration for sustianed wind and gust 
+	
+#gridid glat glonb bvmax_gust vmax_sust gust_dur sust_dur
+#PH175312018 11.071 119.386 33.380596 22.403085 1200 480
+#PH175312018 11.071 119.386 33.380596 22.403085 1200 480
+#PH175312018 11.076 119.391  33.231415 22.302963  1200  450
+#PH175312018 11.076 119.385 33.295912 22.346250 1200 450 
+#PH175312018 11.087 119.398 32.951383 22.115022  1200 450
 #
+
+#referances
+#stormwindmodel
+#Harper, BA, JD Kepert, and JD Ginger. 2010. “Guidelines for Converting Between Various Wind Averaging Periods in Tropical Cyclone Conditions.” World Meteorological Organization, WMO/TD 1555.
+#Jones, Owen, Robert Maillardet, and Andrew Robinson. 2009. Introduction to Scientific Programming and Simulation Using R. Boca Raton, FL: Chapman & Hall/CRC Press.
+#Knaff, John A, Mark DeMaria, Debra A Molenar, Charles R Sampson, and Matthew G Seybold. 2011. “An Automated, Objective, Multiple-Satellite-Platform Tropical Cyclone Surface Wind Analysis.” Journal of Applied Meteorology and Climatology 50 (10): 2149–66.
+#Phadke, Amal C, Christopher D Martino, Kwok Fai Cheung, and Samuel H Houston. 2003. “Modeling of Tropical Cyclone Winds and Waves for Emergency Management.” Ocean Engineering 30 (4): 553–78.
+#Press, William H, Saul A Teukolsky, William T Vetterling, and Brian P Flannery. 2002. Numerical Recipes in C++: The Art of Scientific Computing. 2nd ed. Cambridge, UK: Cambridge University Press.
+#Willoughby, HE, RWR Darling, and ME Rahn. 2006. “Parametric Representation of the Primary Hurricane Vortex. Part II: A New Family of Sectionally Continuous Profiles.” Monthly Weather Review 134 (4): 1102–20.
