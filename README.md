@@ -36,6 +36,7 @@ PH101314000,8.374,124.890
 ...
 ...
 where: gridid- municipality pcode, glat is latitude, glon is longitude 
+with the two inputs, Track data and grid points, the code will produce output similar to the table shown below 
 
 ![A forecast data at a grid point calculated by typhoontrack2grid](figures/pagasa3.png)
 
