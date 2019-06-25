@@ -3,15 +3,15 @@ This script is developed to calculate localized wind speed and exosure duration 
 
 # Typhoon Track data
 Typhoon forecast data from National Met agencies come in different formate, the following example shows a typhoon warning bulleten issued by PAGASA for the phillipiness responisiblity area. 
-![A forecast information of typhoon HAIYAN issued by PAGASA](pagasa.png)
+![A forecast information of typhoon HAIYAN issued by PAGASA](figures/pagasa.png)
 
 The relevant information on typhoon is extracted form the text document 
 
-![A forecast data extracted from warning issued by PAGASA(the above text document)](pagasa2.png)
+![A forecast data extracted from warning issued by PAGASA(the above text document)](figures/pagasa2.png)
 
 The typhoon track data is not suffceint inormation to estimate the possible impact of typhoon. A wind severity map, which will show the magnitude of wind at different locations is needed as an input for impact based forecasting models. For 510 typhoon model we need data at each grid location (manucipality centers) and this tool can be used to calculate wind speed at manucipality centers.
 
-![A forecast data at a grid point calculated by typhoontrack2grid](pagasa3.png)
+![A forecast data at a grid point calculated by typhoontrack2grid](figures/pagasa3.png)
 
 In the figure above  
 Vmax_gust maximum wind speed
@@ -23,7 +23,7 @@ sust_dur total duration of exposure for sustained wind
 # Wind severty mapping
 Then we can create a severity map from  the calculated gridpoint windspeed data
 
-![Wind severity map of Haiyan](haiyan.JPG)
+![Wind severity map of Haiyan](figures/haiyan.JPG)
 
 # Referances
 
