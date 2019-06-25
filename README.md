@@ -1,6 +1,6 @@
 R script that uses WILLOUGHBY et al. methedology to calculate windspeed at any gridpoint location in PAR from a typhoon track data.
 
-The script is available under the [GPL license](https://github.com/rodekruis/Pcoder/blob/master/LICENSE)
+The script is available under the [GPL license](LICENSE)
 
 ![alt tag](http://510.global/wp-content/uploads/2015/06/510-opengraph.png)
 
