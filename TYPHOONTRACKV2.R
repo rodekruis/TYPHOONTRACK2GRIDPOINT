@@ -1,3 +1,5 @@
+
+#calculate wind for historical typhoons
 library(ggplot2)
 library(dplyr)
 library(tidyr)
