@@ -27,7 +27,7 @@ Then we can create a severity map from  the calculated gridpoint windspeed data
 
 # Referances
 
-This tool is based on the the work of "Willoughby, HE, RWR Darling, and ME Rahn. 2006. “Parametric Representation of the Primary Hurricane Vortex. Part II: A New Family of Sectionally Continuous Profiles.” Monthly Weather Review 134 (4): 1102–20.
+This tool is based on the the work of "Willoughby, HE, RWR Darling, and ME Rahn. 2006. Parametric Representation of the Primary Hurricane Vortex. Part II: A New Family of Sectionally Continuous Profiles.” Monthly Weather Review 134 (4): 1102–20.
 
 
 
