@@ -1,3 +1,10 @@
+R script that uses WILLOUGHBY et al. methedology to calculate windspeed at any gridpoint location in PAR from a typhoon track data.
+
+The script is available under the [GPL license](https://github.com/rodekruis/Pcoder/blob/master/LICENSE)
+
+![alt tag](http://510.global/wp-content/uploads/2015/06/510-opengraph.png)
+
+
 # Localized windspeed 
 This script is developed to calculate localized wind speed and exosure duration froma a typhoon track data with information on maximum wind speed and typhoon center. This tool can be used to calculte wind speed at any grid point location in the Phillipines Responisbility Area (PAR).  In Addtion to maximum wind speed the tool will also calculate duration of exposure to a wind speed above a certain threshold. 
 
