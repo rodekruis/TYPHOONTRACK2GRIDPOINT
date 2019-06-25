@@ -1,17 +1,16 @@
-# TYPHOONTRACK2GRIDPOINT
-This script is developed to translate Typhoon track data, with information on maximum wind speed and typhoon center, into wind speed at a grid point location. for the Priority indexing model this will be at the center of municipalities 
-In Addtion to maximum wind speed the tool will also calculate duration of exposure to a wind speed above a certain threshold and this will be calculated for each grid location based on typhoon track data 
+# Localized windspeed and exposure duration  TYPHOONTRACK2GRIDPOINT
+This script is developed to calculate localized wind speed and exosure duration froma a typhoon track data with information on maximum wind speed and typhoon center. This tool can be used to calculte wind speed at any grid point location in the Phillipines Responisbility Area (PAR).  In Addtion to maximum wind speed the tool will also calculate duration of exposure to a wind speed above a certain threshold. 
 
 # typhoon Track data(For example PAGASA forecast comes with the follwoing information into gridpoint 
-#BASIN,CY,YYYYMMDDHH,,,,LAT,LON,VMAX,MSLP,TY,RAD,RAD1,RAD2,RAD3,RAD4,RADP,RRP	MRD	GUSTS	EYE	SPEED	STORMNAME	DEPTH
-#CP, 01, 2015072506,   , BEST,   0, 273N, 1295E,  60,  978, TS,  34, NEQ,  105,   90,   90,   95, 1009,  190,  15,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072506,   , BEST,   0, 273N, 1295E,  60,  978, TS,  50, NEQ,   45,   40,   40,   55, 1009,  190,  15,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072512,   , BEST,   0, 285N, 1292E,  55,  982, TS,  34, NEQ,   95,   70,   70,   85, 1009,  180,  15,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072512,   , BEST,   0, 285N, 1292E,  55,  982, TS,  50, NEQ,   30,   25,   25,   30, 1009,  180,  15,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072518,   , BEST,   0, 298N, 1291E,  50,  985, TS,  34, NEQ,   90,   80,   80,   70, 1006,  140,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072600,   , BEST,   0, 310N, 1292E,  45,  989, TS,  34, NEQ,   80,   70,   90,   80, 1007,  140,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072606,   , BEST,   0, 322N, 1294E,  40,  993, TS,  34, NEQ,   80,   70,   90,   80, 1007,  140,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072612,   , BEST,   0, 333N, 1300E,  20, 1007, DB,   0,    ,    0,    0,    0,    0, 1007,  130,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M,
+#BASIN,CY,YYYYMMDDHH,,,,LAT,LON,VMAX,MSLP,TY,RAD,RAD1,RAD2,RAD3,RAD4,RADP,RRP,MRD,GUSTS,EYE,SPEED,STORMNAME,DEPTH
+#CP, 01, 2015072506,,BEST,0,273N,1295E,60,978,TS,34,NEQ,105,90,90,95,1009,190,15,0,0,C,0,,0,0,HALOLA,M,
+#CP,01,2015072506,,BEST,0,273N,1295E,60,978,TS,50,NEQ,45,40,40,55,1009,190,15,0,0,C,0,,0,0,HALOLA,M,
+#CP,01,2015072512,,BEST,0,285N,1292E,55,982,TS,34,NEQ,95,70,70,85,1009,180,15,0,0,C,0,,0,0,HALOLA,M,
+#CP,01,2015072512,,BEST,0,285N,1292E,55,982,TS,50,NEQ,30,25,25,30,1009,180,15,0,0,C,0,,0,0,HALOLA,M,
+#CP,01,2015072518,,BEST,0,298N,1291E,50,985,TS,34,NEQ,90,80,80,70,1006,140,35,0,0,C,0,,0,0,HALOLA,M,
+#CP,01,2015072600,,BEST,0,310N,1292E,45,989,TS,34,NEQ,80,70,90,80,1007,140,35,0,0,C,0,,0,0,HALOLA,M,
+#CP,01,2015072606,,BEST,0,322N,1294E,40,993,TS,34,NEQ,80,70,90,80,1007,140,35,0,0,C,0,,0,0,HALOLA,M,
+#CP,01,2015072612,,BEST,0,333N,1300E,20,1007,DB,0,,0,0,0,0,1007,130,35,0,0,C,0,,0,0,HALOLA,M,
 
 for typhoon model we need data at each grid location(manucipality centers) and this coede is to calculate wind
 speed at manucipality centers 
