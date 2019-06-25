@@ -1,7 +1,8 @@
-# Localized windspeed and exposure duration  TYPHOONTRACK2GRIDPOINT
+# Localized windspeed 
 This script is developed to calculate localized wind speed and exosure duration froma a typhoon track data with information on maximum wind speed and typhoon center. This tool can be used to calculte wind speed at any grid point location in the Phillipines Responisbility Area (PAR).  In Addtion to maximum wind speed the tool will also calculate duration of exposure to a wind speed above a certain threshold. 
 
-# typhoon Track data(For example PAGASA forecast comes with the follwoing information into gridpoint 
+# typhoon Track data
+Typhoon Track data (For example PAGASA forecast comes with the follwoing information into gridpoint 
 #BASIN,CY,YYYYMMDDHH,,,,LAT,LON,VMAX,MSLP,TY,RAD,RAD1,RAD2,RAD3,RAD4,RADP,RRP,MRD,GUSTS,EYE,SPEED,STORMNAME,DEPTH
 #CP, 01, 2015072506,,BEST,0,273N,1295E,60,978,TS,34,NEQ,105,90,90,95,1009,190,15,0,0,C,0,,0,0,HALOLA,M,
 #CP,01,2015072506,,BEST,0,273N,1295E,60,978,TS,50,NEQ,45,40,40,55,1009,190,15,0,0,C,0,,0,0,HALOLA,M,
