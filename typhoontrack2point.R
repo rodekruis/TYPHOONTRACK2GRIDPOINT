@@ -1,32 +1,33 @@
 ## this model will calculate maximum wind speed and duration of maximum wind speeds for each grid location based on typhoon track data 
-# typhoon Track data(For example PAGASA forecast comes with the follwoing information into gridpoint 
-#BASIN,CY,YYYYMMDDHH,,,,LAT,LON,VMAX,MSLP,TY,RAD,RAD1,RAD2,RAD3,RAD4,RADP,RRP	MRD	GUSTS	EYE	SPEED	STORMNAME	DEPTH
-#CP, 01, 2015072506,   , BEST,   0, 273N, 1295E,  60,  978, TS,  34, NEQ,  105,   90,   90,   95, 1009,  190,  15,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072506,   , BEST,   0, 273N, 1295E,  60,  978, TS,  50, NEQ,   45,   40,   40,   55, 1009,  190,  15,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072512,   , BEST,   0, 285N, 1292E,  55,  982, TS,  34, NEQ,   95,   70,   70,   85, 1009,  180,  15,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072512,   , BEST,   0, 285N, 1292E,  55,  982, TS,  50, NEQ,   30,   25,   25,   30, 1009,  180,  15,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072518,   , BEST,   0, 298N, 1291E,  50,  985, TS,  34, NEQ,   90,   80,   80,   70, 1006,  140,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072600,   , BEST,   0, 310N, 1292E,  45,  989, TS,  34, NEQ,   80,   70,   90,   80, 1007,  140,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072606,   , BEST,   0, 322N, 1294E,  40,  993, TS,  34, NEQ,   80,   70,   90,   80, 1007,  140,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M, 
-#CP, 01, 2015072612,   , BEST,   0, 333N, 1300E,  20, 1007, DB,   0,    ,    0,    0,    0,    0, 1007,  130,  35,   0,   0,   C,   0,    ,   0,   0,     HALOLA, M,
+# typhoon Track data(For example PAGASA forecast comes with the follwoing information into gridpoint ,  
+#VMAX is wind speed in Kt
+#BASIN,CY,YYYYMMDDHH,LAT,LON,VMAX,STORMNAME
+#WP,,201311040000,6.1,152.2,35,HAIYAN
+#WP,,201311040600,6.2,150.4,35,HAIYAN
+#WP,,201311041200,6.3,148.8,40,HAIYAN
+#WP,,201311041800,6.5,147.2,45,HAIYAN
+#WP,,201311050000,6.5,145.9,55,HAIYAN
+#WP,,201311050600,6.5,144.6,60,HAIYAN
+#WP,,201311051200,6.9,142.9,65,HAIYAN
+#WP,,201311051800,7.1,141.3,75,HAIYAN
+#WP,,201311060000,7.3,139.7,85,HAIYAN 
 
-## for typhoon model we need data at each grid location(manucipality centers) and this coede is to calculate wind speed at manucipality centers 
-# this tool is based on the the work of "Willoughby, HE, RWR Darling, and ME Rahn. 2006. 
-#“Parametric Representation of the Primary Hurricane Vortex. Part II:
-#A New Family of Sectionally Continuous Profiles.” Monthly Weather Review 134 (4): 1102–20.
+# But for typhoon model we need data at each grid location(manucipality centers) and 
+# this coede is developed to calculate wind speed at any grid location in PRA, for 510
+# typhoon model casse gridponts are manucipality population mean centers 
 
+# this tool is based on the the work of Willoughby, HE, RWR Darling, and ME Rahn. 2006. 
+# “Parametric Representation of the Primary Hurricane Vortex. Part II: A New Family of Sectionally Continuous Profiles.” 
 
 library(ggplot2)
 library(dplyr)
 library(tidyr)
 library(gridExtra)
 
-# read data
-TRACK_DATA <- read.csv("C:/Users/ATeklesadik/Rode Kruis/510 - Data preparedness - Documents/[PRJ] FbF - Philippines - (PMF)/Analysis/historical_best_track_metoc_navy/best_track.csv")
+# wind_track_haiyan  read data
+TRACK_DATA <- read.csv(")data/haiyan.csv")
 
-#wind_track_haiyan<- read.csv("C:/Users/ATeklesadik/Rode Kruis/510 - Data preparedness - Documents/[PRJ] FbF - Philippines - (PMF)/model_improvement/wind_track_haiyan.csv")
-grid_points <- read.csv("C:/Users/ATeklesadik/Rode Kruis/510 - Data preparedness - Documents/[PRJ] FbF - Philippines - (PMF)/model_improvement/county_points_php.csv", sep=";")
-#grid_points_haiyan <- read.csv("C:/Users/ATeklesadik/Rode Kruis/510 - Data preparedness - Documents/[PRJ] FbF - Philippines - (PMF)/model_improvement/grid_points_6.csv")
+grid_points <- read.csv("data/grid_points_admin3.csv", sep=";")
 
 typhoon_names <- list('Bopha','Goni','Hagupit','Haima','Haiyan','Kalmaegi','Koppu','Melor','Nock-Ten','Rammasun','Sarika','Utor')
 
@@ -34,14 +35,15 @@ typhoon_names<-tolower(typhoon_names)
 #rjdt1<-rjdt[rjdt$cycloneName_x %in% typhoon_names, ]
 
 
-setwd("C:/Users/ATeklesadik/Rode Kruis/510 - Data preparedness - Documents/[PRJ] FbF - Philippines - (PMF)/Analysis/historical_best_track_metoc_navy")
+#setwd("....")
 #BASIN,CY,YYYYMMDDHH,TECHNUM,TECH,TAU,LatN/S,LonE/W,vmax,mslp,ty,RAD,WINDCODE,RAD1,RAD2,RAD3,RAD4,RADP,RRP,MRD,GUSTS,EYE,SUBREGION,MAXSEAS,INITITIALS,DIR,STORMNAME,DEPTH
 
-TRACK_DATA<-TRACK_DATA[tolower(TRACK_DATA$STORMNAME) %in% typhoon_names, ]
+#TRACK_DATA<-TRACK_DATA[tolower(TRACK_DATA$STORMNAME) %in% typhoon_names, ]
 
 
 
 #best_track<-TRACK_DATA[TRACK_DATA$YEAR >2011,]
+
 grid_points_ <- grid_points %>% 
   mutate(gridid =ADM4_PCODE,#substr(ADM4_PCODE, 3,11),
          glat = Lat, 
@@ -76,11 +78,11 @@ degrees_to_radians<- function(degrees){
   return(radians)
 }
 
-create_full_track <- function(hurr_track, tint = 0.5){  
+create_full_track <- function(typhoon_track, tint = 0.5){  
   
-  hurr_track <- hurr_track %>%
+  typhoon_track <- typhoon_track %>%
     mutate(
-      index                          = 1:nrow(hurr_track),
+      index                          = 1:nrow(typhoon_track),
       date                           = lubridate::ymd_hm(YYYYMMDDHH),
       tclat                           = abs(as.numeric(LAT)),
       tclon                           = as.numeric(LON),
@@ -100,20 +102,20 @@ create_full_track <- function(hurr_track, tint = 0.5){
             wind                                    ,
             vmax      ) 
   
-  #interp_df <- floor(nrow(hurr_track) / 2)
-  interp_df<- 30    
-  interp_date <- seq(from = min(hurr_track$date),
-                     to = max(hurr_track$date),
+  interp_df <- floor(nrow(typhoon_track) / 3)-1
+  #interp_df<- 30    
+  interp_date <- seq(from = min(typhoon_track$date),
+                     to = max(typhoon_track$date),
                      by = tint * 3600) # Date time sequence must use `by` in
   # seconds
   interp_date <- data.frame(date = interp_date)
   
-  tclat_spline <- stats::glm(tclat ~ splines::ns(date, df = interp_df),  data = hurr_track)
+  tclat_spline <- stats::glm(tclat ~ splines::ns(date, df = interp_df),  data = typhoon_track)
   interp_tclat <- stats::predict.glm(tclat_spline, newdata = interp_date)  
-  tclon_spline <- stats::glm(tclon ~ splines::ns(date, df = interp_df),  data = hurr_track)
+  tclon_spline <- stats::glm(tclon ~ splines::ns(date, df = interp_df),  data = typhoon_track)
   interp_tclon <- stats::predict.glm(tclon_spline, newdata = interp_date)
   
-  vmax_spline <- stats::glm(vmax ~ splines::ns(date, df = interp_df),    data = hurr_track)
+  vmax_spline <- stats::glm(vmax ~ splines::ns(date, df = interp_df),    data = typhoon_track)
   interp_vmax <- stats::predict.glm(vmax_spline, newdata = interp_date)
   
   full_track <- data.frame(date = interp_date, tclat = interp_tclat, tclon = interp_tclon, vmax = interp_vmax)
@@ -122,56 +124,48 @@ create_full_track <- function(hurr_track, tint = 0.5){
 
 
 
-latlon_to_km<- function(tclat_1, tclon_1, tclat_2, tclon_2, Rearth = 6378.14){
-  tclat_1 <- degrees_to_radians(tclat_1)
-  tclon_1 <- degrees_to_radians(tclon_1)
-  tclat_2 <- degrees_to_radians(tclat_2)
-  tclon_2 <- degrees_to_radians(tclon_2)
+latlon_to_km<- function(lat1, lon1, lat2, lon2, Rearth = 6378.14){
+  lat_1 <- degrees_to_radians(lat1)
+  lon_1 <- degrees_to_radians(lon1)
+  lat_2 <- degrees_to_radians(lat2)
+  lon_2 <- degrees_to_radians(lon2)
   
-  delta_L <- tclon_1 - tclon_2
-  delta_tclat <- tclat_1 - tclat_2
+  delta_L <- lon_1 - lon_2
+  delta_tclat <- lat_1 - lat_2
   
   hav_L <- sin(delta_L / 2) ^ 2
   hav_tclat <- sin(delta_tclat / 2) ^ 2
   
-  hav_gamma <- hav_tclat + cos(tclat_1) * cos(tclat_2) * hav_L
+  hav_gamma <- hav_tclat + cos(lat_1) * cos(lat_2) * hav_L
   gamma <- 2 * asin(sqrt(hav_gamma))
   
   dist <- Rearth * gamma
   return(dist)
 }
 
-calc_forward_speed<- function(tclat_1, tclon_1, time_1, tclat_2, tclon_2, time_2){
-  dist <- latlon_to_km(tclat_1, tclon_1, tclat_2, tclon_2) * 1000
+calc_forward_speed<- function(lat_1, lon_1, time_1, lat_2, lon_2, time_2){
+  dist <- latlon_to_km(lat_1, lon_1, lat_2, lon_2) * 1000
   time <- as.numeric(difftime(time_2, time_1, units = "secs"))
-  tcspd <- dist / time
-  return(tcspd)
+  typhoon_speed <- dist / time
+  return(typhoon_speed)
 }
-
-
-
 
 ##Calculate the direction of gradient winds at each location
 
-calc_bearing<- function(tclat_1, tclon_1, tclat_2, tclon_2){
-  tclat_1 <- degrees_to_radians(tclat_1)
-  tclon_1 <- degrees_to_radians(tclon_1)
-  tclat_2 <- degrees_to_radians(tclat_2)
-  tclon_2 <- degrees_to_radians(tclon_2)
-  
- 
-  
-  S <- cos(tclat_2) * sin(tclon_1 - tclon_2)
-  C <- cos(tclat_1) * sin(tclat_2) - sin(tclat_1) * cos(tclat_2) * cos(tclon_1 - tclon_2)
+calc_bearing<- function(lat_1, lon_1, lat_2, lon_2){
+  lat_1 <- degrees_to_radians(lat_1)
+  lon_1 <- degrees_to_radians(lon_1)
+  lat_2 <- degrees_to_radians(lat_2)
+  lon_2 <- degrees_to_radians(lon_2)
+     
+  S <- cos(lat_2) * sin(lon_1 - lon_2)
+  C <- cos(lat_1) * sin(lat_2) - sin(lat_1) * cos(lat_2) * cos(lon_1 - lon_2)
   
   theta_rad <- atan2(S, C)
   theta <- radians_to_degrees(theta_rad) + 90
   theta <- theta %% 360 # restrict to be between 0 and 360 degrees
   return(theta)
 }
-
-
-
 
 remove_forward_speed<- function(vmax, tcspd){
   vmax_sfc_sym <- vmax - 0.5 * tcspd
@@ -189,7 +183,8 @@ calc_gradient_speed<- function(vmax_sfc_sym, over_land){
 }
 
 ## to define land vs water locations in PAR area 
-landmask <- readr::read_csv("C:/SOFTWARES/stormwindmodel/data-raw/landseamask_ph1.csv",
+
+landmask <- readr::read_csv("data/landseamask_ph1.csv",
                             col_names = c("longitude", "latitude", "land")) %>%
   dplyr::mutate(land = factor(land, levels = c(1, 0), labels = c("land", "water")))
 
@@ -230,7 +225,7 @@ will10a<-function(vmax_gl, tclat){
 }
 #
 #Next, the code calculates another Willoughby parameter, n. This is done with equation 10b from Willoughby et al. (2006):
-#n=0.406+0.0144Vmax,Gâ0.0038Ï
+#
 
 will10b<- function(vmax_gl, tclat){
   n <- 0.4067 + 0.0144 * vmax_gl - 0.0038 * tclat
@@ -284,9 +279,6 @@ solve_for_xi<- function(xi0 = 0.5, eq3_right, eps = 10e-4, itmax = 100){
 
 ##Now an equation from the Willoughby et al. 2006 paper can be used to calculate R1 (Willoughby, Darling, and Rahn 2006):
 
-#R1â=â Rmaxâ â â¾(R2âââR1)
-
-#For this function, the package code assumes that R2âââR1 (the width of the transition region) is 25 kilometers when Rmax is larger than 20 #kilometers and 15 kilometers otherwise.
 
 calc_R1<- function(Rmax, xi){
   R2_minus_R1 <- ifelse(Rmax > 20, 25, 15)
@@ -306,18 +298,22 @@ calc_R1<- function(Rmax, xi){
 ##R2: Radius to the end of the transition region (km)
 ##R2 = ifelse(Rmax > 20, R1 + 25, R1 + 15)
 ##Calculate wind speed at each grid point
-##Next, the code models the wind speed at a location (e.g., a county center). As a note, this function calculates wind characteristics at a ##single location; a later function applies this function across many grid points):
+##Next, the code models the wind speed at a location (e.g., a Manucipality center).
+#As a note, this function calculates wind characteristics at a 
+#single location; a later function applies this function across many grid points):
 
-##After calculating the grid wind time series for a grid point, you can input the time series for a grid point into summarize_grid_wind to ##generate overall storm summaries for the grid point. This functions calculate wind characteristics at each grid point (or county center ##location) for every storm observation. These characteristics are:
+##After calculating the grid wind time series for a grid point, 
+#you can input the time series for a grid point into summarize_grid_wind to
+##generate overall storm summaries for the grid point. 
+#This functions calculate wind characteristics at each grid point (or Manucipality center #
+# for every storm observation. These characteristics are:
 
-##vmax_gust: Maximum value of surface-level (10 meters) sustained winds, in meters per second, over the length of the storm at the given ##location
-##vmax_sust: Maximum value of surface-level (10 meters) gust winds, in meters per second, over the length of the storm at the given location
-##gust_dur: Length of time, in minutes, that surface-level sustained winds were above a certain wind speed cutoff (e.g., 20 meters per ##second)
-##sust_dur: Length of time, in minutes, that surface-level gust winds were above a certain wind speed cutoff (e.g., 20 meters per second)
-
-
-
-
+##vmax_gust: Maximum value of surface-level (10 meters) sustained winds, m/s, over the length of the storm at the given ##location
+##vmax_sust: Maximum value of surface-level (10 meters) gust winds, in m/s, over the length of the storm at the given location
+##gust_dur: Length of time, in minutes, that surface-level sustained winds were above a certain wind speed cutoff
+#(e.g., 20 meters per ##second)
+##sust_dur: Length of time, in minutes, that surface-level gust winds were above a certain wind speed cutoff
+#(e.g., 20 meters per second)
 
 ##Determine gradient wind speed at each location
 ##Next, the package calculates VG(r), the gradient level 1-minute sustained wind at the grid point, which is at radius r from the tropical ##cyclone center (Cdis**t for the grid point). Note there are different equations for VG(r) for (1) the eye to the start of the transition ##region; (2) outside the transition region; and (3) within the transition region.
@@ -360,18 +356,15 @@ gradient_to_surface<- function(wind_gl_aa, cdist){
   } else {
     reduction_factor <- 0.90 - (cdist - 100) * (0.15/ 600)
   }
-  # Since all counties are over land, reduction factor should
+  # Since all manucipalities are over land, reduction factor should
   # be 20% lower than if it were over water
   reduction_factor <- reduction_factor * 0.8
   wind_sfc_sym <- wind_gl_aa * reduction_factor
   return(wind_sfc_sym)
 }
 
-
-
-
-
-##Next, the function calculates the gradient wind direction based on the bearing of a location from the storm. This gradient wind direction is##calculated by adding 90 degrees to the bearing of the grid point from the storm center.
+##Next, the function calculates the gradient wind direction based on the bearing of a location from the storm. 
+#This gradient wind direction is##calculated by adding 90 degrees to the bearing of the grid point from the storm center.
 
 #gwd = (90 + chead) %% 360
 
@@ -404,7 +397,6 @@ add_inflow<- function(gwd, cdist, Rmax){
   return(gwd_with_inflow)
 }
 
-
 #Add back in wind component from forward speed of storm Next, to add back in the storm's forward motion at each grid point, the code #reverses the earlier step that used the Phadke correction factor (equation 12, Phadke et al. 2003). The package calculates a constant #correction factor (correction_factor), as a function of r, radius from the storm center to the grid point, and Rmax, radius from storm #center to maximum winds.
 
 #$$ U(r) = \frac{R_{max}r}{R_{max}^2 + r^2}F $$ where:
@@ -436,7 +428,7 @@ add_forward_speed <- function(wind_sfc_sym, tcspd_u, tcspd_v, swd, cdist, Rmax){
 
 #Here is a table with gust factors based on location (Harper, Kepert, and Ginger 2010):
 
-#Location	Gust factor (G3,â60)
+#Location	Gust factor 
 #In-land	1.49
 #Just offshore	1.36
 #Just onshore	1.23
@@ -445,11 +437,7 @@ add_forward_speed <- function(wind_sfc_sym, tcspd_u, tcspd_v, swd, cdist, Rmax){
 
 gustspeed = windspeed * 1.49
 
-
-
-
-
-get_grid_winds<- function(hurr_track , grid_df ,tint = 0.5,gust_duration_cut = 20,sust_duration_cut = 20){
+get_grid_winds<- function(hurr_track , grid_df ,tint = 0.5,gust_duration_cut = 20,sust_duration_cut = 40){
   full_track <- create_full_track(hurr_track = hurr_track, tint = tint)
   with_wind_radii <- add_wind_radii(full_track = full_track)
   
@@ -530,7 +518,7 @@ get_grid_winds <- function(hurr_track,
                            grid_df,
                            tint = 0.5,
                            gust_duration_cut = 20,
-                           sust_duration_cut = 20){
+                           sust_duration_cut = 40){
   full_track <- create_full_track(hurr_track = hurr_track, tint = tint)
   with_wind_radii <- add_wind_radii(full_track = full_track)
   
@@ -574,12 +562,12 @@ calc_and_summarize_grid_wind <- function(grid_point,
   
 }
 
-#### example to calculate typhoon data for each Barangai. Example bopha
-# first filter data for Bopha
-TRACK_DATA1<-TRACK_DATA[tolower(TRACK_DATA$STORMNAME) == 'bopha', ]
+#### example to calculate typhoon data for each Manucipality 
+
+
 # then calculate 
 
-wind_grids <- get_grid_winds(hurr_track=TRACK_DATA1, grid_df=grid_points_,tint = 0.5,gust_duration_cut = 20,sust_duration_cut = 20)
+wind_grids <- get_grid_winds(typhoon_track=TRACK_DATA, grid_df=grid_points_,tint = 0.5,gust_duration_cut = 40,sust_duration_cut = 20)
 
 # the result will be maximum sustained wind, gust and duration for sustianed wind and gust 
 	
@@ -589,13 +577,13 @@ wind_grids <- get_grid_winds(hurr_track=TRACK_DATA1, grid_df=grid_points_,tint =
 #PH175312018 11.076 119.391  33.231415 22.302963  1200  450
 #PH175312018 11.076 119.385 33.295912 22.346250 1200 450 
 #PH175312018 11.087 119.398 32.951383 22.115022  1200 450
-#
+
 
 #referances
-#stormwindmodel
-#Harper, BA, JD Kepert, and JD Ginger. 2010. “Guidelines for Converting Between Various Wind Averaging Periods in Tropical Cyclone Conditions.” World Meteorological Organization, WMO/TD 1555.
-#Jones, Owen, Robert Maillardet, and Andrew Robinson. 2009. Introduction to Scientific Programming and Simulation Using R. Boca Raton, FL: Chapman & Hall/CRC Press.
-#Knaff, John A, Mark DeMaria, Debra A Molenar, Charles R Sampson, and Matthew G Seybold. 2011. “An Automated, Objective, Multiple-Satellite-Platform Tropical Cyclone Surface Wind Analysis.” Journal of Applied Meteorology and Climatology 50 (10): 2149–66.
-#Phadke, Amal C, Christopher D Martino, Kwok Fai Cheung, and Samuel H Houston. 2003. “Modeling of Tropical Cyclone Winds and Waves for Emergency Management.” Ocean Engineering 30 (4): 553–78.
-#Press, William H, Saul A Teukolsky, William T Vetterling, and Brian P Flannery. 2002. Numerical Recipes in C++: The Art of Scientific Computing. 2nd ed. Cambridge, UK: Cambridge University Press.
-#Willoughby, HE, RWR Darling, and ME Rahn. 2006. “Parametric Representation of the Primary Hurricane Vortex. Part II: A New Family of Sectionally Continuous Profiles.” Monthly Weather Review 134 (4): 1102–20.
+# stormwindmodel 
+# Harper, BA, JD Kepert, and JD Ginger. 2010. “Guidelines for Converting Between Various Wind Averaging Periods in Tropical Cyclone Conditions.” World Meteorological Organization, WMO/TD 1555.
+# Jones, Owen, Robert Maillardet, and Andrew Robinson. 2009. Introduction to Scientific Programming and Simulation Using R. Boca Raton, FL: Chapman & Hall/CRC Press.
+# Knaff, John A, Mark DeMaria, Debra A Molenar, Charles R Sampson, and Matthew G Seybold. 2011. “An Automated, Objective, Multiple-Satellite-Platform Tropical Cyclone Surface Wind Analysis.” Journal of Applied Meteorology and Climatology 50 (10): 2149–66.
+# Phadke, Amal C, Christopher D Martino, Kwok Fai Cheung, and Samuel H Houston. 2003. “Modeling of Tropical Cyclone Winds and Waves for Emergency Management.” Ocean Engineering 30 (4): 553–78.
+# Press, William H, Saul A Teukolsky, William T Vetterling, and Brian P Flannery. 2002. Numerical Recipes in C++: The Art of Scientific Computing. 2nd ed. Cambridge, UK: Cambridge University Press.
+# Willoughby, HE, RWR Darling, and ME Rahn. 2006. “Parametric Representation of the Primary Hurricane Vortex. Part II: A New Family of Sectionally Continuous Profiles.” Monthly Weather Review 134 (4): 1102–20.
