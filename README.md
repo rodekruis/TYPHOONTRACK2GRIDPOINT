@@ -1,7 +1,7 @@
 # Localized windspeed 
 This script is developed to calculate localized wind speed and exosure duration froma a typhoon track data with information on maximum wind speed and typhoon center. This tool can be used to calculte wind speed at any grid point location in the Phillipines Responisbility Area (PAR).  In Addtion to maximum wind speed the tool will also calculate duration of exposure to a wind speed above a certain threshold. 
 
-# typhoon Track data
+# Typhoon Track data
 Typhoon Track data (For example PAGASA forecast comes with the follwoing information into gridpoint 
 #BASIN,CY,YYYYMMDDHH,,,,LAT,LON,VMAX,MSLP,TY,RAD,RAD1,RAD2,RAD3,RAD4,RADP,RRP,MRD,GUSTS,EYE,SPEED,STORMNAME,DEPTH
 #CP, 01, 2015072506,,BEST,0,273N,1295E,60,978,TS,34,NEQ,105,90,90,95,1009,190,15,0,0,C,0,,0,0,HALOLA,M,
@@ -24,7 +24,7 @@ Vmax_sust maximum sustaind speed
 dist_track minimum distance from typhoon track
 gust_dur total duration of exposure for gust wind
 sust_dur total duration of exposure for sustained wind 
-
+# Output 
 Mun_code,lat,lon,vmax_gust,vmax_sust,dist_track,typoon_name2,gust_dur,sust_dur
 PH012801000,18.453,120.91,20.09104,13.483918,162.246178,nock-ten,690,350
 PH012802000,18.267,120.61,22.79886,15.30125,130.11633,nock-ten,690,420
@@ -38,5 +38,6 @@ PH012809000,18.077,120.72,24.36572,16.352832,115.823812,nock-ten,650,450
 PH012810000,18.477,120.83,20.16238,13.531799,161.310408,nock-ten,650,450
 PH012811000,17.967,120.65,25.9712,17.430335,101.612818,nock-ten,650,450
 
-
+# Wind severty map for Manucipalities
+For Typhoon Hayian the output looks as th following 
 ![Example of Haiyan](haiyan.JPG)
