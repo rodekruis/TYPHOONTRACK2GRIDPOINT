@@ -45,12 +45,16 @@ In the table above
 Vmax_gust maximum wind speed
 ![Vmax_gust maximum wind speed](figures/wind.png)
 Vmax_sust maximum sustaind speed
-![dist_track minimum distance from typhoon track](figures/track.png)
+dist_track minimum distance from typhoon track
 dist_track minimum distance from typhoon track
 gust_dur total duration of exposure for gust wind
-![gust_dur total duration of exposure for gust wind above 30mph](figures/exposur2.png)
+gust_dur total duration of exposure for gust wind above 30mph
+gust_dur total duration of exposure for gust wind above 30mph
 
-![gust_dur total duration of exposure for gust wind above 30mph](figures/exposure.png)
+| duration of exposure for gust wind above 30mph                                 |Distance from typhoon track        |
+| ---------------------------------------------- | -------------------------- |
+| ![gust_dur total duration of exposure for gust wind above 30mph](figure/exposue2.png)  | ![dist_track minimum distance from typhoon track](figures/track.png)  |
+| ![gust_dur total duration of exposure for gust wind above 30mph](figures/exposure.png) |  |
 
 sust_dur total duration of exposure for sustained wind 
 
