@@ -52,7 +52,7 @@ gust_dur total duration of exposure for gust wind above 30mph
 
 | duration of exposure for gust wind above 30mph |Distance from typhoon track and wind speed       |
 | ---------------------------------------------- | --------------------------                      |
-| <img src="figures/exposue2.png" alt="duration of exposure for gust wind above 30mph" width="400" height="600">  | <img src="figures/track.png" alt="dist_track minimum distance from typhoon track" width="400" height="600">  |
+| <img src="figures/exposue2.png" alt="duration of exposure for gust wind above 30mph" width="400" height="400">  | <img src="figures/track.png" alt="dist_track minimum distance from typhoon track" width="400" height="600">  |
 |  <img src="figures/exposure.png" alt="duration of exposure for gust wind above 30mph" width="400" height="600">  |  <img src="figures/wind.png" alt="Vmax_gust maximum wind speed" width="400" height="600"> |
 
 sust_dur total duration of exposure for sustained wind 
