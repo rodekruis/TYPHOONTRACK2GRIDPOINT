@@ -43,7 +43,6 @@ with the two inputs, Track data and grid points, the code will produce output si
 ![A forecast data at a grid point calculated by typhoontrack2grid](figures/pagasa3.png)
 In the table above  
 Vmax_gust maximum wind speed
-![Vmax_gust maximum wind speed](figures/wind.png)
 Vmax_sust maximum sustaind speed
 dist_track minimum distance from typhoon track
 dist_track minimum distance from typhoon track
@@ -51,10 +50,10 @@ gust_dur total duration of exposure for gust wind
 gust_dur total duration of exposure for gust wind above 30mph
 gust_dur total duration of exposure for gust wind above 30mph
 
-| duration of exposure for gust wind above 30mph                                 |Distance from typhoon track and wind speed       |
-| ---------------------------------------------- | -------------------------- |
-| ![gust_dur total duration of exposure for gust wind above 30mph](figures/exposue2.png)  | ![dist_track minimum distance from typhoon track](figures/track.png)  |
-| ![gust_dur total duration of exposure for gust wind above 30mph](figures/exposure.png) |![Vmax_gust maximum wind speed](figures/wind.png)  |
+| duration of exposure for gust wind above 30mph |Distance from typhoon track and wind speed       |
+| ---------------------------------------------- | --------------------------                      |
+| ![duration of exposure for gust wind above 30mph](figures/exposue2.png)  | ![dist_track minimum distance from typhoon track](figures/track.png)  |
+| ![duration of exposure for gust wind above 30mph](figures/exposure.png) |![Vmax_gust maximum wind speed](figures/wind.png)  |
 
 sust_dur total duration of exposure for sustained wind 
 
