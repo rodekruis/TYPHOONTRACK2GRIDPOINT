@@ -19,17 +19,17 @@ In addition to typhoon track data , we need to provide information on grid locat
 Grid point location is provided in the following format 
 
 gridid,glat,glon
-PH012801000,18.453,120.910
-PH012802000,18.267,120.610
-PH012803000,17.906,120.500
-PH012804000,18.490,120.750
-PH012805000,18.038,120.580
-PH012807000,18.219,120.860
-PH012808000,18.011,120.500
-PH012820000,18.146,120.590
-PH012901000,16.893,120.570
-PH012809000,18.077,120.720
-PH101314000,8.374,124.890
+ PH012801000,18.453,120.910
+ PH012802000,18.267,120.610
+ PH012803000,17.906,120.500
+ PH012804000,18.490,120.750
+ PH012805000,18.038,120.580
+ PH012807000,18.219,120.860
+ PH012808000,18.011,120.500
+ PH012820000,18.146,120.590
+ PH012901000,16.893,120.570
+ PH012809000,18.077,120.720
+ PH101314000,8.374,124.890
 ...
 ...
 where: gridid- municipality pcode, glat is latitude, glon is longitude 
@@ -37,11 +37,15 @@ with the two inputs, Track data and grid points, the code will produce output si
 
 ![A forecast data at a grid point calculated by typhoontrack2grid](figures/pagasa3.png)
 
-In the figure above  
+In the table above  
 Vmax_gust maximum wind speed
+![Vmax_gust maximum wind speed](figures/wind.png)
 Vmax_sust maximum sustaind speed
+![dist_track minimum distance from typhoon track](figures/track.png)
 dist_track minimum distance from typhoon track
 gust_dur total duration of exposure for gust wind
+![gust_dur total duration of exposure for gust wind above 30mph](figures/exposure1.png)
+![gust_dur total duration of exposure for gust wind above 30mph](figures/exposure.png)
 sust_dur total duration of exposure for sustained wind 
 
 # Wind severty mapping
