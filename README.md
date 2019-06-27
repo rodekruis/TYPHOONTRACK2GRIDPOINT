@@ -37,11 +37,10 @@ Grid point location is provided in the following format
  - PH012901000,16.893,120.570 
  - PH012809000,18.077,120.720 
  - PH101314000,8.374,124.890 
+ 
 where: gridid- municipality pcode, glat is latitude, glon is longitude 
 with the two inputs, Track data and grid points, the code will produce output similar to the table shown below 
-
 ![A forecast data at a grid point calculated by typhoontrack2grid](figures/pagasa3.png)
-
 In the table above  
 Vmax_gust maximum wind speed
 ![Vmax_gust maximum wind speed](figures/wind.png)
@@ -49,8 +48,10 @@ Vmax_sust maximum sustaind speed
 ![dist_track minimum distance from typhoon track](figures/track.png)
 dist_track minimum distance from typhoon track
 gust_dur total duration of exposure for gust wind
-![gust_dur total duration of exposure for gust wind above 30mph](figures/exposure2.png)
+![gust_dur total duration of exposure for gust wind above 30mph](figures/exposur2.png)
+
 ![gust_dur total duration of exposure for gust wind above 30mph](figures/exposure.png)
+
 sust_dur total duration of exposure for sustained wind 
 
 # Wind severty mapping
