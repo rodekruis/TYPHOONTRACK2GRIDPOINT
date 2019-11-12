@@ -34,10 +34,7 @@ Grid point location is provided in the following format
  - PH012805000,18.038,120.580 
  - PH012807000,18.219,120.860 
  - PH012808000,18.011,120.500 
- - PH012820000,18.146,120.590  
- - PH012901000,16.893,120.570 
- - PH012809000,18.077,120.720 
- - PH101314000,8.374,124.890 
+...
  
 where: gridid- municipality pcode, glat is latitude, glon is longitude 
 with the two inputs, Track data and grid points, the code will produce output similar to the table shown below 
