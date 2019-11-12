@@ -1,4 +1,5 @@
-R script that uses WILLOUGHBY et al. methedology to calculate windspeed at any gridpoint location in the Phillipiness area of Responsiblity(PAR), based on a typhoon track data. The script include some codes from [stormwindmodel R package](https://CRAN.R-project.org/package=stormwindmodel). Stormwindmodel was developed to estimate windspeed at a grid location. 
+# Typhoon wind hazard estimation
+This tool was developed to prepare input for typhoon damage prediction model. The tool is written in R, it uses WILLOUGHBY et al. methedology to calculate windspeed at any gridpoint location in the Phillipiness area of Responsiblity(PAR), based on a typhoon track data. The script reused some codes from [stormwindmodel R package](https://CRAN.R-project.org/package=stormwindmodel). Stormwindmodel was developed to estimate windspeed at a grid location. 
 
 The script is available under the [GPL license](LICENSE)
 
