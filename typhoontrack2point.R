@@ -45,7 +45,7 @@ typhoon_names<-tolower(typhoon_names)
 #best_track<-TRACK_DATA[TRACK_DATA$YEAR >2011,]
 
 grid_points_ <- grid_points %>% 
-  mutate(gridid =ADM4_PCODE,#substr(ADM4_PCODE, 3,11),
+  mutate(#gridid =ADM4_PCODE,#substr(ADM4_PCODE, 3,11),
          glat = Lat, 
          glon = Lon) %>%
   select(gridid, glat, glon) 
